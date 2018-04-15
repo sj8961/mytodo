@@ -8,7 +8,6 @@ def log(*args, **kwargs):
     # time.time() 返回 unix time
     format = '%H:%M:%S'
     value = time.localtime(int(time.time()))
-    # 1500057448 -> 7:38:38
     dt = time.strftime(format, value)
     print(dt, *args, **kwargs)
     # a append 追加模式
@@ -17,7 +16,7 @@ def log(*args, **kwargs):
 
 
 path = 'templates'
-# 创建一个加载器, jinja2 会从这个目录中加载模板
+# 创建一个加载器, jinja2从目录中加载模板
 loader = FileSystemLoader(path)
 # 用加载器创建一个环境, 有了它才能读取模板文件
 env = Environment(loader=loader)
