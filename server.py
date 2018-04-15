@@ -31,10 +31,10 @@ def response_for_path(request):
 def process_request(connection):
     r = connection.recv(1024)
     r = r.decode()
-    log('request log:\n{}'.format(r))
+    # log('request log:\n{}'.format(r))
     # 把原始请求数据传给 Request 对象
     request = Request(r)
-    log('request :}', request)
+    # log('request :}', request)
     # 用 response_for_path 函数来得到 path 对应的响应内容
     response = response_for_path(request)
     if 'static' in request.path:
@@ -53,7 +53,7 @@ def run(host, port):
     """
     # 初始化 socket
     # 使用 with 可以保证程序中断的时候正确关闭 socket 释放占用的端口
-    log('开始运行于', '{}:{}'.format(host, port))
+    # log('开始运行于', '{}:{}'.format(host, port))
     with socket.socket() as s:
         s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         s.bind((host, port))
@@ -62,7 +62,7 @@ def run(host, port):
         while True:
             connection, address = s.accept()
             # 第二个参数类型是 tuple
-            log('ip {}'.format(address))
+            # log('ip {}'.format(address))
             _thread.start_new_thread(process_request, (connection,))
 
 
